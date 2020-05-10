@@ -26,13 +26,30 @@ $("#signupform").submit(function(event){
 
 //Ajax Call for the login form
 //Once the form is submitted
+$("#loginform").submit(function(event){
     //prevent default php processing
+    event.preventDefault();
     //collect user inputs
-    //send them to login.php using AJAX
-        //AJAX Call successful
-            //if php files returns "success": redirect the user to notes page
-            //otherwise show error message
-        //AJAX Call fails: show Ajax Call error
+    var datatopost = $(this).serializeArray();
+    console.log(datatopost);
+    //send them to signup.php using AJAX
+    $.ajax({
+        url: "login.php",
+        type: "POST",
+        data: datatopost,
+        success: function(data){
+            if(data.includes("success")){
+                window.location = "mainpageloggedin.php";
+            }else{
+                $('#loginmessage').html(data);
+            }
+        },
+        error: function(){
+            $("#signupmessage").html("<div class='alert alert-danger'>There was an error with the Ajax Call. Please try again later.</div>");
+        }
+    });
+    
+});
 
 
 //Ajax Call for the forgot password form
