@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header("location:index.php");
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -70,7 +77,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Logged in as <b>username</b></a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="index.php?logout=1">Logout</a></li>
                 </ul>
             </div>
         </div>
