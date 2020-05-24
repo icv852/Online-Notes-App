@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){ 
+        session_start(); 
+    }
 include("connection.php");
 
 //get the user_id

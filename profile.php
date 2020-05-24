@@ -81,7 +81,7 @@ if($count == 1){
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#">Logged in as <b><?php echo $username; ?></b></a></li>
-                    <li><a href="#">Logout</a></li>
+                    <li><a href="index.php?logout=1">Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -100,7 +100,7 @@ if($count == 1){
                         </tr>
                         <tr data-target="#updateemail" data-toggle="modal">
                             <td>Email</td>
-                            <td>value</td>
+                            <td><?php echo $email ?></td>
                         </tr>
                         <tr data-target="#updatepassword" data-toggle="modal">
                             <td>Password</td>
@@ -122,6 +122,7 @@ if($count == 1){
                         <h4 id="myModalLabel">Edit Username:</h4>
                     </div>
                     <div class="modal-body">
+                        <!--Update username message from PHP file-->
                         <div id="updateusernamemessage"></div>
                         <div class="form-group">
                             <label for="username">Username:</label>
@@ -146,10 +147,12 @@ if($count == 1){
                         <button class="close" data-dismiss="modal">&times;</button>
                         <h4 id="myModalLabel">Enter new email:</h4>
                     </div>
-                    <div class="modal-body">    
+                    <div class="modal-body">
+                        <!--Update email message from PHP file-->
+                        <div id="updateemailmessage"></div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input class="form-control" type="text" name="email" id="email" maxlength="50" value="email value">
+                            <input class="form-control" type="text" name="email" id="email" maxlength="50" value="<?php echo $email ?>">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -171,6 +174,8 @@ if($count == 1){
                         <h4 id="myModalLabel">Enter Current and New password:</h4>
                     </div>
                     <div class="modal-body">    
+                        <!--Update password message from PHP file-->
+                        <div id="updatepasswordmessage"></div>
                         <div class="form-group">
                             <label for="currentpassword" class="sr-only">Current Password:</label>
                             <input class="form-control" type="password" name="currentpassword" id="currentpassword" maxlength="30" placeholder="Your Current Password">
@@ -198,7 +203,7 @@ if($count == 1){
     <!--    Footer-->
     <div class="footer">
         <div class="container">
-            <p>DevelopmentIsland.com Copyright &copy; 2015-<?php $today = date("Y"); echo $today?>.</p>
+            <p>Victor Cheng Copyright &copy; 2020-<?php $today = date("Y"); echo $today?>.</p>
         </div>
     </div>
 

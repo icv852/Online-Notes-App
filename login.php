@@ -1,6 +1,8 @@
 <?php
 //Start session
-session_start();
+if(!isset($_SESSION)){ 
+        session_start(); 
+    }
 //Connect to the database
 include("connection.php");
 //Check user inputs

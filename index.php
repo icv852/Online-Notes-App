@@ -1,5 +1,7 @@
 <?php
-session_start();
+if(!isset($_SESSION)){ 
+        session_start(); 
+    }
 include('connection.php');
 
 //logout
@@ -179,7 +181,7 @@ include('remember.php');
     <!--    Footer-->
     <div class="footer">
         <div class="container">
-            <p>DevelopmentIsland.com Copyright &copy; 2015-<?php $today = date("Y"); echo $today?>.</p>
+            <p>Victor Cheng Copyright &copy; 2020-<?php $today = date("Y"); echo $today?>.</p>
         </div>
     </div>
 

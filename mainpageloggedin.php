@@ -1,10 +1,27 @@
 <?php
-session_start();
+if(!isset($_SESSION)){ 
+        session_start(); 
+    }
 if(!isset($_SESSION['user_id'])){
     header("location:index.php");
 }
-// Turn off all error reporting
-error_reporting(0);
+include('connection.php');
+
+$user_id = $_SESSION['user_id'];
+
+//get username and email
+$sql = "SELECT * FROM users WHERE user_id='$user_id'";
+$result = mysqli_query($link, $sql);
+
+$count = mysqli_num_rows($result);
+
+if($count == 1){
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $username = $row['username'];
+    $email = $row['email'];
+}else{
+    echo "There was an error retrieving the username and email from the database";
+}
 ?>
 
 <!doctype html>
@@ -99,7 +116,7 @@ error_reporting(0);
                     <li class="active"><a href="#">My Notes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logged in as <b><?php echo $_SESSION['username'] ?></b></a></li>
+                    <li><a href="#">Logged in as <b><?php echo $username; ?></b></a></li>
                     <li><a href="index.php?logout=1">Logout</a></li>
                 </ul>
             </div>
@@ -140,7 +157,7 @@ error_reporting(0);
     <!--    Footer-->
     <div class="footer">
         <div class="container">
-            <p>DevelopmentIsland.com Copyright &copy; 2015-<?php $today = date("Y"); echo $today?>.</p>
+            <p>Victor Cheng Copyright &copy; 2020-<?php $today = date("Y"); echo $today?>.</p>
         </div>
     </div>
 
