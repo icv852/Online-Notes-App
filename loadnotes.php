@@ -22,9 +22,15 @@ if($result = mysqli_query($link, $sql)){
             $note = $row['note'];
             $time = $row['time'];
             $time = date("F d, Y h:i:s A", $time);
-            echo "<div class='noteheader' id='$note_id'>
-                <div class='text'>$note</div>
-                <div class='timetext'>$time</div>
+            echo "
+            <div class='note'>
+                <div class='col-xs-5 col-sm-3 delete'>
+                    <button class='btn-lg btn-danger' style='width:100%'>delete</button>
+                </div>
+                <div class='noteheader' id='$note_id'>
+                    <div class='text'>$note</div>
+                    <div class='timetext'>$time</div>
+                </div>
             </div>";
         }
     }else{

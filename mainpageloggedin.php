@@ -34,7 +34,7 @@ error_reporting(0);
         }
 
         #notePad, #allNotes,
-        #done {
+        #done, .delete {
             display: none;
         }
 
@@ -99,7 +99,7 @@ error_reporting(0);
                     <li class="active"><a href="#">My Notes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logged in as <b>username</b></a></li>
+                    <li><a href="#">Logged in as <b><?php echo $_SESSION['username'] ?></b></a></li>
                     <li><a href="index.php?logout=1">Logout</a></li>
                 </ul>
             </div>
