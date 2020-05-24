@@ -1,3 +1,27 @@
+<?php
+session_start();
+if(!isset($_SESSION['user_id'])){
+    header("location:index.php");
+}
+include('connection.php');
+
+$user_id = $_SESSION['user_id'];
+
+//get username and email
+$sql = "SELECT * FROM users WHERE user_id='$user_id'";
+$result = mysqli_query($link, $sql);
+
+$count = mysqli_num_rows($result);
+
+if($count == 1){
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $username = $row['username'];
+    $email = $row['email'];
+}else{
+    echo "There was an error retrieving the username and email from the database";
+}
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -50,13 +74,13 @@
             </div>
             <div class="navbar-collapse collapse" id="navbarCollapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Profile</a></li>
+                    <li class="active"><a href="#">Profile</a></li>
                     <li><a href="#">Help</a></li>
                     <li><a href="#">Contact Us</a></li>
-                    <li class="active"><a href="#">My Notes</a></li>
+                    <li><a href="mainpageloggedin.php">My Notes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logged in as <b>username</b></a></li>
+                    <li><a href="#">Logged in as <b><?php echo $username; ?></b></a></li>
                     <li><a href="#">Logout</a></li>
                 </ul>
             </div>
@@ -72,7 +96,7 @@
                     <table class="table table-hover table-condensed table-bordered">
                         <tr data-target="#updateusername" data-toggle="modal">
                             <td>Username</td>
-                            <td>value</td>
+                            <td><?php echo $username; ?></td>
                         </tr>
                         <tr data-target="#updateemail" data-toggle="modal">
                             <td>Email</td>
@@ -97,10 +121,11 @@
                         <button class="close" data-dismiss="modal">&times;</button>
                         <h4 id="myModalLabel">Edit Username:</h4>
                     </div>
-                    <div class="modal-body">    
+                    <div class="modal-body">
+                        <div id="updateusernamemessage"></div>
                         <div class="form-group">
                             <label for="username">Username:</label>
-                            <input class="form-control" type="text" name="username" id="username" maxlength="30" value="username value">
+                            <input class="form-control" type="text" name="username" id="username" maxlength="30" value="<?php echo $username; ?>">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -184,6 +209,7 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="profile.js"></script>
 </body>
 
 </html>
