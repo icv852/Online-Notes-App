@@ -95,7 +95,7 @@ $activationKey = bin2hex(openssl_random_pseudo_bytes(16));
     //32 characters in database
 
 //Insert user details and activation code in the users table
-$sql = "INSERT INTO users (username, email, password, activation) VALUES ('$username', '$email', '$password', '$activationKey')";
+$sql = "INSERT INTO users (username, email, password, activation, activation2) VALUES ('$username', '$email', '$password', '$activationKey', '')";
 $result = mysqli_query($link, $sql);
 if(!$result){
     echo '<div class="alert alert-danger">There was an error inserting the user details in the database!</div>'; 
@@ -105,7 +105,7 @@ if(!$result){
 
 //Send the user an email with a link to activate.php with their email and activation code
 $message = "Please click on this link to activate your account:\n\n";
-$message .= "http://localhost/xampp/onlineNotesApp/activate.php?email=" . urlencode($email) . "&key=$activationKey";
+$message .= "http://vicwebomega.000webhostapp.com/activate.php?email=" . urlencode($email) . "&key=$activationKey";
 if(mail($email, 'Confirm your Registration', $message, 'From:' . 'icv852@gmail.com')){
     echo "<div class='alert alert-success'>Thank for your registring! A confirmation email has been sent to $email. Please click on the activation link to activate your account.</div>";
 }

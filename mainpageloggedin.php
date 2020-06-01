@@ -111,8 +111,10 @@ if($count == 1){
             <div class="navbar-collapse collapse" id="navbarCollapse">
                 <ul class="nav navbar-nav">
                     <li><a href="profile.php">Profile</a></li>
+<!--
                     <li><a href="#">Help</a></li>
                     <li><a href="#">Contact Us</a></li>
+-->
                     <li class="active"><a href="#">My Notes</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
